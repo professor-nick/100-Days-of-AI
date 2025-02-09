@@ -1,70 +1,120 @@
 import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
-from datetime import datetime, timedelta
+import numpy as np
+from datetime import datetime
 
-# Set the style for better visualization
-plt.style.use('seaborn-v0_8')
+# Constants
+start_date = '2004-08-19'  # Google's IPO
+initial_investment = 10000
+GOOGLE = 'Google'
+DOMINOS = "Domino's"
 
-# Calculate the date range (25 years ago until now)
-end_date = datetime.now()
-start_date = end_date - timedelta(days=25*365)
+# Get data and normalize it first
+googl = yf.download('GOOGL', start=start_date)['Close'].squeeze()
+dpz = yf.download('DPZ', start=start_date)['Close'].squeeze()
 
-# Download the stock data
-googl = yf.download('GOOGL', start=start_date, end=end_date)
-dpz = yf.download('DPZ', start=start_date, end=end_date)
+# Align the data
+googl, dpz = googl.align(dpz)
 
-# Find the later IPO date between Google and Domino's
-start_date_comparison = max(googl.index[0], dpz.index[0])
+# Calculate normalized values first, then convert to numpy
+googl_norm = googl / googl.iloc[0]
+dpz_norm = dpz / dpz.iloc[0]
 
-# Calculate investment returns
-initial_investment = 10000  # $10,000 investment
+# Convert to numpy arrays and multiply by initial investment
+dates = googl.index
+googl_values = initial_investment * googl_norm.values
+dpz_values = initial_investment * dpz_norm.values
 
-# Create two subplots
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(15, 16))
+# Print shapes to verify
+print("Dates shape:", dates.shape)
+print("Google values shape:", googl_values.shape)
+print("Domino's values shape:", dpz_values.shape)
+
+# Create three subplots
+fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(15, 20))
 
 # Plot 1: Growth of $10,000 Investment
-googl_investment = (googl['Close'] / googl.loc[start_date_comparison, 'Close']) * initial_investment
-dpz_investment = (dpz['Close'] / dpz.loc[start_date_comparison, 'Close']) * initial_investment
+ax1.plot(dates, googl_values, label='Google (GOOGL)', linewidth=2, color='blue')
+ax1.plot(dates, dpz_values, label="Domino's (DPZ)", linewidth=2, color='green')
 
-ax1.plot(googl_investment.index, googl_investment, label='Google (GOOGL)', linewidth=2)
-ax1.plot(dpz_investment.index, dpz_investment, label="Domino's (DPZ)", linewidth=2)
+# Shade the areas
+ax1.fill_between(dates, googl_values, dpz_values, 
+                 where=googl_values >= dpz_values, 
+                 color='blue', alpha=0.1,
+                 label='Google Ahead')
+ax1.fill_between(dates, googl_values, dpz_values,
+                 where=googl_values <= dpz_values, 
+                 color='green', alpha=0.1,
+                 label="Domino's Ahead")
 
-ax1.set_title("Growth of $10,000 Investment", fontsize=16, pad=20)
+ax1.set_title(f"Growth of $10,000 Investment (Since Google's IPO: {start_date})", fontsize=16, pad=20)
 ax1.set_xlabel('Year', fontsize=12)
 ax1.set_ylabel('Investment Value (USD)', fontsize=12)
 ax1.legend(fontsize=12)
 ax1.grid(True, alpha=0.3)
 ax1.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'${x:,.0f}'))
 
-# Plot 2: Log Scale Comparison
-ax2.semilogy(googl_investment.index, googl_investment, label='Google (GOOGL)', linewidth=2)
-ax2.semilogy(dpz_investment.index, dpz_investment, label="Domino's (DPZ)", linewidth=2)
+# Plot 2: Relative Performance
+relative_perf = ((googl_values - dpz_values) / dpz_values) * 100
 
-ax2.set_title("Growth Rate Comparison (Log Scale)", fontsize=16, pad=20)
+ax2.plot(dates, relative_perf, label='Google vs. Domino\'s', 
+         color='purple', linewidth=2)
+ax2.axhline(y=0, color='black', linestyle='--', alpha=0.3)
+ax2.fill_between(dates, relative_perf, 0, 
+                 where=relative_perf >= 0, 
+                 color='blue', alpha=0.1,
+                 label='Google Ahead')
+ax2.fill_between(dates, relative_perf, 0,
+                 where=relative_perf <= 0, 
+                 color='green', alpha=0.1,
+                 label="Domino's Ahead")
+
+ax2.set_title("Who's Winning? (Google's Performance vs. Domino's)", fontsize=16, pad=20)
 ax2.set_xlabel('Year', fontsize=12)
-ax2.set_ylabel('Investment Value (Log Scale)', fontsize=12)
+ax2.set_ylabel('Google\'s Relative Performance (%)', fontsize=12)
 ax2.legend(fontsize=12)
 ax2.grid(True, alpha=0.3)
 
+# Plot 3: Final Value Comparison
+final_values = pd.Series({
+    GOOGLE: googl_values[-1],
+    DOMINOS: dpz_values[-1]
+})
+
+colors = ['blue', 'green']
+ax3.bar(final_values.index, final_values.values, color=colors)
+ax3.set_title("Final Investment Values", fontsize=16, pad=20)
+ax3.set_ylabel('Final Value (USD)', fontsize=12)
+
+# Add value labels on bars
+for i, v in enumerate(final_values):
+    ax3.text(i, v, f'${v:,.0f}', ha='center', va='bottom')
+    
+# Add percentage difference annotation
+pct_diff = ((final_values[GOOGLE] - final_values[DOMINOS]) / final_values[DOMINOS]) * 100
+ax3.text(0.5, max(final_values) * 1.1, 
+         f'Difference: ${abs(final_values[GOOGLE] - final_values[DOMINOS]):,.0f}\n({pct_diff:.1f}% {"more" if pct_diff > 0 else "less"})',
+         ha='center', va='bottom', fontsize=12)
+
 # Print analysis
-print("\nInvestment Growth Analysis ($10,000 initial investment)")
-print(f"Start date: {start_date_comparison.strftime('%Y-%m-%d')}")
+print(f"\nInvestment Growth Analysis (${initial_investment:,} initial investment)")
+print(f"Start date: {start_date} (Google's IPO)")
 
 for name, final_value in [
-    ("Google", float(googl_investment.iloc[-1])),
-    ("Domino's", float(dpz_investment.iloc[-1]))
+    (GOOGLE, googl_values[-1]),
+    (DOMINOS, dpz_values[-1])
 ]:
     total_return = ((final_value/initial_investment) - 1) * 100
-    years_held = (end_date - start_date_comparison).days / 365.25
+    years_held = (datetime.now() - datetime.strptime(start_date, '%Y-%m-%d')).days / 365.25
     annualized = (((final_value/initial_investment) ** (1/years_held)) - 1) * 100
     
     print(f"\n{name}:")
+    print(f"Initial investment: ${initial_investment:,.2f}")
     print(f"Final value: ${final_value:,.2f}")
     print(f"Total return: {total_return:.1f}%")
     print(f"Annualized return: {annualized:.1f}% per year")
 
 plt.tight_layout()
-plt.savefig('investment_comparison.png', dpi=300, bbox_inches='tight')
+plt.savefig('investment_comparison_enhanced.png', dpi=300, bbox_inches='tight')
 plt.show() 
