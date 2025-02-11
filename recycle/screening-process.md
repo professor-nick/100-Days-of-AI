@@ -1,7 +1,7 @@
 # 🚀 Fully Optimized Tech Sales Screening Process
 
 ## 📌 Overview
-This structured screening call process ensures maximum efficiency, candidate engagement, and alignment with the hiring team's needs. The goal is to identify high-quality candidates, de-risk potential hiring issues, and secure commitment for the next steps.
+r
 
 ## 🎯 Primary Objectives:
 * Confirm core requirements – Compensation, location, enterprise sales fit.
