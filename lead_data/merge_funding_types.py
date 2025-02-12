@@ -7,7 +7,15 @@ crunchbase_df = pd.read_csv('lead_data/Get 1st AI Recruiting Client (USA, 70 Day
 
 # Clean company names for accurate matching
 def clean_company_name(name):
-    return str(name).lower().strip().replace(' ', '').replace('.','').replace('-','')
+    name = str(name).lower().strip()
+    # Remove common suffixes but preserve core identifiers
+    suffixes = ['labs', 'inc', 'llc', 'ai', 'technologies']
+    return (
+        name.replace(' ', '')
+        .replace('.','')
+        .replace('-','')
+        .rstrip(''.join(suffixes))  # Remove trailing suffixes
+    )
 
 apollo_df['clean_name'] = apollo_df['Company Name'].apply(clean_company_name)
 crunchbase_df['clean_name'] = crunchbase_df['Company Name'].apply(clean_company_name)
@@ -37,7 +45,13 @@ def get_correct_info(row):
     
     # Then check partial matches
     for crunch_name, data in name_funding_map.items():
-        if crunch_name in row['clean_name'] or row['clean_name'] in crunch_name:
+        if crunch_name == row['clean_name']:  # Require exact match first
+            matches.append(data)
+        elif (
+            crunch_name in row['clean_name'] 
+            and len(crunch_name) > 5  # Minimum match length
+            and not any(term in crunch_name for term in ['lab', 'tech'])  # Avoid generic terms
+        ):
             matches.append(data)
     
     # Take shortest company name match (avoids abbreviations)
@@ -63,6 +77,19 @@ final_df = apollo_df[[
     'Corrected Company': 'Company Name',
     'Corrected Funding': 'Funding Type'
 })
+
+# Add verification checks
+labs_companies = final_df[final_df['Company Name'].str.contains(r'\bLabs\b', case=False, na=False)]
+print("\nLabs Company Verification:")
+if not labs_companies.empty:
+    print(labs_companies[['Company Name', 'Funding Type']])
+else:
+    print("No companies with 'Labs' found - check cleanup logic")
+    
+# Check partial matches
+partial_matches = final_df[final_df['Company Name'].str.contains(r'lab|tech', case=False, na=False)]
+print("\nPotential Generic Name Check:")
+print(partial_matches[['Company Name', 'Funding Type']].head(5))
 
 # Save the merged file
 final_df.to_csv('lead_data/Apollo_Leads_Corrected_Funding.csv', index=False)
