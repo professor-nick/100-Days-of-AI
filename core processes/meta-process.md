@@ -1,15 +1,7 @@
-# **🚀 Final Version: Fully Optimized Tech Sales Screening & Hiring Process**
+# **🚀 Fully Optimized Tech Sales Screening & Hiring Process**
 
 ## **📌 Overview**  
 This **structured hiring process** ensures **maximum efficiency, candidate engagement, and hiring success.** Each step is optimized for **clarity, repeatability, and results-driven execution**.  
-
-### **🎯 Primary Objectives:**
-1. **Confirm core requirements** – Compensation, location, enterprise sales fit.  
-2. **Gauge candidate’s level of interest** – Are they genuinely excited about the role?  
-3. **Test for counteroffer risk & early objections** – Identify potential roadblocks before presenting them to the hiring team.  
-4. **Get them engaged with the opportunity** – Ensure they’re invested in the process and see this as a great move.  
-5. **Secure commitment for an initial interview** – Reduce drop-offs and increase hiring efficiency.  
-6. **Scale and optimize placements** – Use each success story to create new business and long-term partnerships.
 
 ---
 
