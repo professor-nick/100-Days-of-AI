@@ -4,14 +4,28 @@ import urllib.parse
 import argparse
 
 def clean_domain(url):
-    """Extract clean domain from URL"""
+    """Extract standardized domain from URL"""
     if pd.isna(url) or url.strip() == "":
         return ""
+    
     try:
         parsed = urllib.parse.urlparse(url)
         domain = parsed.netloc if parsed.netloc else parsed.path.split('/')[0]
-        return domain.lower().replace("www.", "").strip()
-    except:
+        
+        # Remove www and protocol prefixes
+        domain = domain.lower().replace("www.", "").replace("http://", "").replace("https://", "")
+        
+        # Handle special cases and subdomains
+        parts = domain.split('.')
+        if len(parts) > 2:
+            # Preserve .co.uk/.com.au type domains while removing subdomains
+            tld_combos = ['.co.', '.com.', '.org.', '.net.', '.gov.']  # Add more as needed
+            if any(f".{parts[-3]}." in combo for combo in tld_combos):
+                return '.'.join(parts[-3:])  # Preserve 3-part domains like 'co.uk'
+            return '.'.join(parts[-2:])  # Main domain + TLD
+        return domain
+    except Exception as e:
+        print(f"Error cleaning domain {url}: {str(e)}")
         return url.lower().strip()
 
 def generate_template(input_path):
@@ -54,7 +68,14 @@ def merge_apollo_with_crunchbase(apollo_file, crunchbase_file, output_file):
         how='left'
     )
     
-    # Final column order
+    # Generate template for missing entries
+    missing_domains = merged[merged['Company Name'].isna()]['Domain'].unique()
+    if len(missing_domains) > 0:
+        generate_template(apollo_file)
+        print(f"⚠️  Found {len(missing_domains)} domains without Crunchbase matches")
+        print("Template file created for manual data collection")
+
+    # Final column order and save
     final_columns = [
         'Domain', 'LinkedIn Company URL', 'Twitter URL',
         'First Name', 'Job Title', 'Headline', 'Email',

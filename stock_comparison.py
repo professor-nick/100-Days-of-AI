@@ -4,117 +4,94 @@ import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
 
-# Constants
-start_date = '2004-08-19'  # Google's IPO
-initial_investment = 10000
-GOOGLE = 'Google'
-DOMINOS = "Domino's"
+# Configuration
+START_DATE = '2004-08-19'  # Google's IPO date
+INITIAL_INVESTMENT = 10000
+TICKERS = {
+    'GOOG': 'Google',
+    'DPZ': "Domino's",
+    'AMZN': 'Amazon'  # Example third stock
+}
 
-# Get data and normalize it first
-googl = yf.download('GOOGL', start=start_date)['Close'].squeeze()
-dpz = yf.download('DPZ', start=start_date)['Close'].squeeze()
+# Add color mapping at the configuration level
+COLOR_MAP = {
+    'Google': '#8A2BE2',    # Purple
+    "Domino's": '#20B2AA',  # Teal
+    'Amazon': '#FFD700'     # Gold
+}
 
-# Align the data
-googl, dpz = googl.align(dpz)
+# Fetch and prepare data
+def get_stock_data():
+    data = yf.download(list(TICKERS.keys()), start=START_DATE)['Close']
+    return data.rename(columns=TICKERS)
 
-# Calculate normalized values first, then convert to numpy
-googl_norm = googl / googl.iloc[0]
-dpz_norm = dpz / dpz.iloc[0]
-
-# Convert to numpy arrays and multiply by initial investment
-dates = googl.index
-googl_values = initial_investment * googl_norm.values
-dpz_values = initial_investment * dpz_norm.values
-
-# Print shapes to verify
-print("Dates shape:", dates.shape)
-print("Google values shape:", googl_values.shape)
-print("Domino's values shape:", dpz_values.shape)
-
-# Create three subplots
-fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(15, 20))
-
-# Plot 1: Growth of $10,000 Investment
-ax1.plot(dates, googl_values, label='Google (GOOGL)', linewidth=2, color='blue')
-ax1.plot(dates, dpz_values, label="Domino's (DPZ)", linewidth=2, color='green')
-
-# Shade the areas
-ax1.fill_between(dates, googl_values, dpz_values, 
-                 where=googl_values >= dpz_values, 
-                 color='blue', alpha=0.1,
-                 label='Google Ahead')
-ax1.fill_between(dates, googl_values, dpz_values,
-                 where=googl_values <= dpz_values, 
-                 color='green', alpha=0.1,
-                 label="Domino's Ahead")
-
-ax1.set_title(f"Growth of $10,000 Investment (Since Google's IPO: {start_date})", fontsize=16, pad=20)
-ax1.set_xlabel('Year', fontsize=12)
-ax1.set_ylabel('Investment Value (USD)', fontsize=12)
-ax1.legend(fontsize=12)
-ax1.grid(True, alpha=0.3)
-ax1.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'${x:,.0f}'))
-
-# Plot 2: Relative Performance
-relative_perf = ((googl_values - dpz_values) / dpz_values) * 100
-
-ax2.plot(dates, relative_perf, label='Google vs. Domino\'s', 
-         color='purple', linewidth=2)
-ax2.axhline(y=0, color='black', linestyle='--', alpha=0.3)
-ax2.fill_between(dates, relative_perf, 0, 
-                 where=relative_perf >= 0, 
-                 color='blue', alpha=0.1,
-                 label='Google Ahead')
-ax2.fill_between(dates, relative_perf, 0,
-                 where=relative_perf <= 0, 
-                 color='green', alpha=0.1,
-                 label="Domino's Ahead")
-
-ax2.set_title("Who's Winning? (Google's Performance vs. Domino's)", fontsize=16, pad=20)
-ax2.set_xlabel('Year', fontsize=12)
-ax2.set_ylabel('Google\'s Relative Performance (%)', fontsize=12)
-ax2.legend(fontsize=12)
-ax2.grid(True, alpha=0.3)
-
-# Plot 3: Final Value Comparison
-final_values = pd.Series({
-    GOOGLE: googl_values[-1],
-    DOMINOS: dpz_values[-1]
-})
-
-colors = ['blue', 'green']
-ax3.bar(final_values.index, final_values.values, color=colors)
-ax3.set_title("Final Investment Values", fontsize=16, pad=20)
-ax3.set_ylabel('Final Value (USD)', fontsize=12)
-
-# Add value labels on bars
-for i, v in enumerate(final_values):
-    ax3.text(i, v, f'${v:,.0f}', ha='center', va='bottom')
+# Calculate normalized returns
+def calculate_returns(stocks):
+    # Get S&P 500 benchmark
+    sp500 = yf.download('^GSPC', start=START_DATE)['Close'].squeeze()  # Convert to Series
+    sp500 = sp500.reindex(stocks.index, method='ffill')
     
-# Add percentage difference annotation
-pct_diff = ((final_values[GOOGLE] - final_values[DOMINOS]) / final_values[DOMINOS]) * 100
-ax3.text(0.5, max(final_values) * 1.1, 
-         f'Difference: ${abs(final_values[GOOGLE] - final_values[DOMINOS]):,.0f}\n({pct_diff:.1f}% {"more" if pct_diff > 0 else "less"})',
-         ha='center', va='bottom', fontsize=12)
-
-# Print analysis
-print(f"\nInvestment Growth Analysis (${initial_investment:,} initial investment)")
-print(f"Start date: {start_date} (Google's IPO)")
-
-for name, final_value in [
-    (GOOGLE, googl_values[-1]),
-    (DOMINOS, dpz_values[-1])
-]:
-    total_return = ((final_value/initial_investment) - 1) * 100
-    years_held = (datetime.now() - datetime.strptime(start_date, '%Y-%m-%d')).days / 365.25
-    annualized = (((final_value/initial_investment) ** (1/years_held)) - 1) * 100
+    # Calculate normalized returns
+    normalized = stocks.div(stocks.iloc[0]) * INITIAL_INVESTMENT
     
-    print(f"\n{name}:")
-    print(f"Initial investment: ${initial_investment:,.2f}")
-    print(f"Final value: ${final_value:,.2f}")
-    print(f"Total return: {total_return:.1f}%")
-    print(f"Annualized return: {annualized:.1f}% per year")
+    # Calculate relative to S&P 500
+    benchmarks = pd.DataFrame(index=stocks.index)
+    for company in TICKERS.values():
+        benchmarks[company] = (stocks[company] / sp500) * 100
+        
+    return normalized, benchmarks
 
-plt.tight_layout()
-plt.savefig('investment_comparison_enhanced.png', dpi=300, bbox_inches='tight')
-plt.show() 
+# Generate visualizations
+def create_visualization(stocks, benchmarks):
+    fig = plt.figure(figsize=(18, 24))
+    gs = fig.add_gridspec(3, 1)
+    
+    # Plot 1: Investment Growth
+    ax1 = fig.add_subplot(gs[0])
+    for company in TICKERS.values():
+        ax1.plot(stocks.index, stocks[company], 
+                label=company, 
+                linewidth=2,
+                color=COLOR_MAP[company])
+    ax1.set_title(f"Growth of ${INITIAL_INVESTMENT:,} Investment", fontsize=16)
+    ax1.legend()
+    ax1.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: f'${x:,.0f}'))
+    
+    # Plot 2: Relative to S&P 500
+    ax2 = fig.add_subplot(gs[1])
+    for company in TICKERS.values():
+        ax2.plot(stocks.index, benchmarks[company], 
+                label=company,
+                color=COLOR_MAP[company])
+    ax2.axhline(100, color='black', linestyle='--')
+    ax2.set_title("Performance vs. S&P 500 (%)", fontsize=16)
+    
+    # Plot 3: Final Value Comparison
+    ax3 = fig.add_subplot(gs[2])
+    final_values = stocks.iloc[-1]
+    colors = [COLOR_MAP[company] for company in final_values.index]
+    ax3.bar(final_values.index, final_values.values, color=colors)
+    for i, value in enumerate(final_values):
+        ax3.text(i, value, f'${value:,.0f}', ha='center', va='bottom')
+    
+    plt.tight_layout()
+    plt.savefig('stock_comparison.png', dpi=300)
+    plt.close()
+
+# Run analysis
+if __name__ == "__main__":
+    stocks = get_stock_data()
+    normalized_stocks, benchmarks = calculate_returns(stocks)
+    create_visualization(normalized_stocks, benchmarks)
+    
+    # Print performance report
+    print(f"\n{' Performance Analysis ':-^50}")
+    print(f"Period: {START_DATE} to {datetime.today().strftime('%Y-%m-%d')}")
+    print(f"Initial Investment: ${INITIAL_INVESTMENT:,}\n")
+    
+    for ticker, name in TICKERS.items():
+        returns = (normalized_stocks[name].iloc[-1]/INITIAL_INVESTMENT - 1) * 100
+        annualized = (normalized_stocks[name].iloc[-1]/INITIAL_INVESTMENT)**(1/20) - 1  # 20 years
+        print(f"{name} ({ticker}):")
+        print(f"  Total Return: {returns:.1f}%")
+        print(f"  Annualized Return: {annualized*100:.1f}%\n") 
