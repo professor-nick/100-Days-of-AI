@@ -194,6 +194,11 @@ The executor has access to three tools: invoking 3rd party LLM, invoking web bro
 ## Key Challenges and Analysis
 
 (Planner: Records of technical barriers, resource constraints, potential risks)
+1. Data pipeline integrity with 80k+ rows
+2. API rate limit management for OpenRouter
+3. Error handling for partial failures
+4. Maintaining CSV structure during updates
+5. Cost optimization for large-scale processing
 
 ## Verifiable Success Criteria
 
@@ -202,6 +207,11 @@ The executor has access to three tools: invoking 3rd party LLM, invoking web bro
 ## High-level Task Breakdown
 
 (Planner: List subtasks by phase, or break down into modules)
+1. CSV batch processor with checkpointing
+2. API wrapper with retry logic
+3. Progress tracking system
+4. Output validation layer
+5. Bulk processing optimization
 
 ## Current Status / Progress Tracking
 
@@ -210,7 +220,13 @@ The executor has access to three tools: invoking 3rd party LLM, invoking web bro
 ## Next Steps and Action Items
 
 (Planner: Specific arrangements for the Executor)
+1. Create batch processing script with exponential backoff
+2. Implement incremental save every 10 rows
+3. Add validation for response formatting
+4. Set up error logging system
+5. Create recovery mechanism for interrupted jobs
 
 ## Executor's Feedback or Assistance Requests
 
 (Executor: Write here when encountering blockers, questions, or need for more information during execution)
+[To be filled after implementation attempt]

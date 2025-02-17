@@ -7,7 +7,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import sys
 import time
-from .token_tracker import TokenUsage, APIResponse, get_token_tracker
+from token_tracker import TokenUsage, APIResponse, get_token_tracker
 
 STATUS_FILE = '.cursorrules'
 
@@ -53,11 +53,14 @@ def read_file_content(file_path):
         return None
 
 def create_llm_client():
-    """Create OpenAI client"""
-    api_key = os.getenv('OPENAI_API_KEY')
+    """Create OpenRouter client"""
+    api_key = os.getenv('OPENROUTER_API_KEY')
     if not api_key:
-        raise ValueError("OPENAI_API_KEY not found in environment variables")
-    return OpenAI(api_key=api_key)
+        raise ValueError("OPENROUTER_API_KEY not found in environment variables")
+    return OpenAI(
+        base_url="https://openrouter.ai/api/v1",
+        api_key=api_key
+    )
 
 def query_llm(plan_content, user_prompt=None, file_content=None):
     """Query the LLM with combined prompts"""
@@ -96,13 +99,12 @@ We will do the actual changes in the .cursorrules file.
     try:
         start_time = time.time()
         response = client.chat.completions.create(
-            model="o1",
+            model="deepseek/deepseek-r1",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": combined_prompt}
             ],
-            response_format={"type": "text"},
-            reasoning_effort="low"
+            response_format={"type": "text"}
         )
         thinking_time = time.time() - start_time
         

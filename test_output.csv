@@ -1,0 +1,281 @@
+Domain,LinkedIn Company URL,Twitter URL,First Name,Job Title,Headline,Email,LinkedIn URL,Industry,Phone,Company Name,Last Funding Type,City,Description,Full Description,Category 1,Category 2,Category 3,Last Funded Date,CB Rank,Prompt for HeyGen Script,HeyGen Script
+concourse.co,linkedin.com/company/concourseai,,Ted,Co-Founder,Co-Founder @ Concourse |  AI Agents for corporate finance teams,ted@concourse.co,http://www.linkedin.com/in/ted-michaels,information technology & services,,Concourse,Seed,New York,AI Agents for corporate finance teams,"Concourse is building the first AI Analyst for corporate finance teams. 
+
+Concourse works alongside finance teams to assist in day-to-day operations by taking on the most manual work and proactively surfacing insights. Core to the platform is an AI analyst tailor-built for finance teams that is available at any hour of the day, accessible via natural language, and built with full connectivity to a company’s existing financial systems. It enables team members to more effectively retrieve and analyze data, generate charts and reports, and answer ad-hoc questions. Concourse AI agents can also be deployed into more complex finance workflows to take on discrete projects for you.
+
+Stop doing finance manually and let Concourse do the work for you.",Artificial Intelligence (AI),B2B,Generative AI,2024-10-15,15354,"You are an expert comedy writer trained in Bill Burr’s analogy-driven humor, skilled in crafting jokes using structured comedic techniques like expectation subversion, incongruity, and psychological laughter triggers.
+
+Your task: Generate a single, high-quality joke that is personalized based on the provided user data. The joke should follow this hidden structure but NOT explicitly label the sections:
+
+➡ Premise → Set-up → Punchline
+
+Guidelines for the Joke
+
+Use Analogy: Compare the user’s industry, company, or role to an unexpected concept.
+Subvert Expectations: Let the audience assume where the joke is going, then twist it.
+Match Tone to User Data: If they seem formal, keep it sharp and witty. If they seem casual, lean into humor.
+Be Punchy: Keep it concise—one smooth-flowing joke.
+
+Input Data (Example)
+First Name: Alex
+Job Title: Head of AI Research
+Headline: Building the future of generative models
+Company Name: NeuralForge
+Industry: AI / Machine Learning
+City: San Francisco
+Company Description: An AI startup developing next-gen multimodal LLMs.
+Output Example (Joke, No Labels)
+AI researchers are basically like magicians—except instead of pulling rabbits out of hats, they pull compute bills out of thin air. Alex’s team at NeuralForge is out here training models so big, even OpenAI is side-eyeing their GPU usage. At this point, their LLM isn’t just multimodal—it’s multi-mortgage.
+
+Now, generate a joke based on the following user data:
+
+First Name: Ted
+Job Title: Co-Founder
+Headline: Co-Founder @ Concourse |  AI Agents for corporate finance teams
+Company Name: Concourse
+Industry: information technology & services / Artificial Intelligence (AI) / B2B / Generative AI
+City: New York
+Company Short Description: AI Agents for corporate finance teams
+Full Description: Concourse is building the first AI Analyst for corporate finance teams. 
+
+Concourse works alongside finance teams to assist in day-to-day operations by taking on the most manual work and proactively surfacing insights. Core to the platform is an AI analyst tailor-built for finance teams that is available at any hour of the day, accessible via natural language, and built with full connectivity to a company’s existing financial systems. It enables team members to more effectively retrieve and analyze data, generate charts and reports, and answer ad-hoc questions. Concourse AI agents can also be deployed into more complex finance workflows to take on discrete projects for you.
+
+Stop doing finance manually and let Concourse do the work for you.
+
+This ensures:
+✅ No labels – Just the joke
+✅ Dynamic tone matching based on user data
+✅ Structured but natural flow
+✅ One-shot, top-tier humor
+
+Output below:
+
+“",
+humata.ai,linkedin.com/company/humata,twitter.com/humataai,Cyrus,"Co-Founder, CEO",CEO & Co-Founder at Humata,cyrus@humata.ai,http://www.linkedin.com/in/khajvandi,information technology & services,,Humata,Seed,Austin,Humata is an AI research assistant that provides answers to questions asked by the user on files such as technical papers and reports.,Humata is an AI research assistant that provides answers to questions asked by the user on files such as technical papers and reports. It also allows users to upload files and documents.,Artificial Intelligence (AI),Chatbot,Document Management,2023-10-02,16335,"You are an expert comedy writer trained in Bill Burr’s analogy-driven humor, skilled in crafting jokes using structured comedic techniques like expectation subversion, incongruity, and psychological laughter triggers.
+
+Your task: Generate a single, high-quality joke that is personalized based on the provided user data. The joke should follow this hidden structure but NOT explicitly label the sections:
+
+➡ Premise → Set-up → Punchline
+
+Guidelines for the Joke
+
+Use Analogy: Compare the user’s industry, company, or role to an unexpected concept.
+Subvert Expectations: Let the audience assume where the joke is going, then twist it.
+Match Tone to User Data: If they seem formal, keep it sharp and witty. If they seem casual, lean into humor.
+Be Punchy: Keep it concise—one smooth-flowing joke.
+
+Input Data (Example)
+First Name: Alex
+Job Title: Head of AI Research
+Headline: Building the future of generative models
+Company Name: NeuralForge
+Industry: AI / Machine Learning
+City: San Francisco
+Company Description: An AI startup developing next-gen multimodal LLMs.
+Output Example (Joke, No Labels)
+AI researchers are basically like magicians—except instead of pulling rabbits out of hats, they pull compute bills out of thin air. Alex’s team at NeuralForge is out here training models so big, even OpenAI is side-eyeing their GPU usage. At this point, their LLM isn’t just multimodal—it’s multi-mortgage.
+
+Now, generate a joke based on the following user data:
+
+First Name: Cyrus
+Job Title: Co-Founder, CEO
+Headline: CEO & Co-Founder at Humata
+Company Name: Humata
+Industry: information technology & services / Artificial Intelligence (AI) / Chatbot / Document Management
+City: Austin
+Company Short Description: Humata is an AI research assistant that provides answers to questions asked by the user on files such as technical papers and reports.
+Full Description: Humata is an AI research assistant that provides answers to questions asked by the user on files such as technical papers and reports. It also allows users to upload files and documents.
+
+This ensures:
+✅ No labels – Just the joke
+✅ Dynamic tone matching based on user data
+✅ Structured but natural flow
+✅ One-shot, top-tier humor
+
+Output below:
+
+“",
+afforai.com,linkedin.com/company/afforai,,Alec,Co-Founder & CEO,Founder @ Afforai | 100K users | $1M raised | Forbes 30U30,alecn@afforai.com,http://www.linkedin.com/in/alec-nguyen-about,information technology & services,+19208159067,Afforai,Seed,Austin,The all-in-one workspace for writing and researching,"Afforai is the all-in-one digital workspace for writing and researching. With Afforai, you can collect, annotate, write, cite papers, as well as research with AI. Our mission at Afforai is to make writing and researching into an enjoyable process that people have FUN DOING!!
+
+Some of our products include: Afforai Reference Manager (ARM), Afforai Cite, Afforai Notebook, Afforai AI Research Assistant.",Artificial Intelligence (AI),Productivity Tools,SaaS,2023-11-01,23672,"You are an expert comedy writer trained in Bill Burr’s analogy-driven humor, skilled in crafting jokes using structured comedic techniques like expectation subversion, incongruity, and psychological laughter triggers.
+
+Your task: Generate a single, high-quality joke that is personalized based on the provided user data. The joke should follow this hidden structure but NOT explicitly label the sections:
+
+➡ Premise → Set-up → Punchline
+
+Guidelines for the Joke
+
+Use Analogy: Compare the user’s industry, company, or role to an unexpected concept.
+Subvert Expectations: Let the audience assume where the joke is going, then twist it.
+Match Tone to User Data: If they seem formal, keep it sharp and witty. If they seem casual, lean into humor.
+Be Punchy: Keep it concise—one smooth-flowing joke.
+
+Input Data (Example)
+First Name: Alex
+Job Title: Head of AI Research
+Headline: Building the future of generative models
+Company Name: NeuralForge
+Industry: AI / Machine Learning
+City: San Francisco
+Company Description: An AI startup developing next-gen multimodal LLMs.
+Output Example (Joke, No Labels)
+AI researchers are basically like magicians—except instead of pulling rabbits out of hats, they pull compute bills out of thin air. Alex’s team at NeuralForge is out here training models so big, even OpenAI is side-eyeing their GPU usage. At this point, their LLM isn’t just multimodal—it’s multi-mortgage.
+
+Now, generate a joke based on the following user data:
+
+First Name: Alec
+Job Title: Co-Founder & CEO
+Headline: Founder @ Afforai | 100K users | $1M raised | Forbes 30U30
+Company Name: Afforai
+Industry: information technology & services / Artificial Intelligence (AI) / Productivity Tools / SaaS
+City: Austin
+Company Short Description: The all-in-one workspace for writing and researching
+Full Description: Afforai is the all-in-one digital workspace for writing and researching. With Afforai, you can collect, annotate, write, cite papers, as well as research with AI. Our mission at Afforai is to make writing and researching into an enjoyable process that people have FUN DOING!!
+
+Some of our products include: Afforai Reference Manager (ARM), Afforai Cite, Afforai Notebook, Afforai AI Research Assistant.
+
+This ensures:
+✅ No labels – Just the joke
+✅ Dynamic tone matching based on user data
+✅ Structured but natural flow
+✅ One-shot, top-tier humor
+
+Output below:
+
+“",
+muir.ai,linkedin.com/company/muir-ai,twitter.com/muir_ai,Harris,Founder,Founder at Muir AI | Climate Tech,harris@muir.ai,http://www.linkedin.com/in/harrischalat,information technology & services,,Muir AI,Seed,Seattle,Muir AI develops advanced analytics designed to measure and reduce emissions.,,Analytics,Artificial Intelligence (AI),Information Technology,2023-10-02,29145,"You are an expert comedy writer trained in Bill Burr’s analogy-driven humor, skilled in crafting jokes using structured comedic techniques like expectation subversion, incongruity, and psychological laughter triggers.
+
+Your task: Generate a single, high-quality joke that is personalized based on the provided user data. The joke should follow this hidden structure but NOT explicitly label the sections:
+
+➡ Premise → Set-up → Punchline
+
+Guidelines for the Joke
+
+Use Analogy: Compare the user’s industry, company, or role to an unexpected concept.
+Subvert Expectations: Let the audience assume where the joke is going, then twist it.
+Match Tone to User Data: If they seem formal, keep it sharp and witty. If they seem casual, lean into humor.
+Be Punchy: Keep it concise—one smooth-flowing joke.
+
+Input Data (Example)
+First Name: Alex
+Job Title: Head of AI Research
+Headline: Building the future of generative models
+Company Name: NeuralForge
+Industry: AI / Machine Learning
+City: San Francisco
+Company Description: An AI startup developing next-gen multimodal LLMs.
+Output Example (Joke, No Labels)
+AI researchers are basically like magicians—except instead of pulling rabbits out of hats, they pull compute bills out of thin air. Alex’s team at NeuralForge is out here training models so big, even OpenAI is side-eyeing their GPU usage. At this point, their LLM isn’t just multimodal—it’s multi-mortgage.
+
+Now, generate a joke based on the following user data:
+
+First Name: Harris
+Job Title: Founder
+Headline: Founder at Muir AI | Climate Tech
+Company Name: Muir AI
+Industry: information technology & services / Analytics / Artificial Intelligence (AI) / Information Technology
+City: Seattle
+Company Short Description: Muir AI develops advanced analytics designed to measure and reduce emissions.
+Full Description: 
+
+This ensures:
+✅ No labels – Just the joke
+✅ Dynamic tone matching based on user data
+✅ Structured but natural flow
+✅ One-shot, top-tier humor
+
+Output below:
+
+“",
+rallyreader.com,linkedin.com/company/rally-reader%e2%84%a2%ef%b8%8f,twitter.com/rallyreader,Stouffer,Co-Founder,CRO/CCO/Co-Founder,stouffer@rallyreader.com,http://www.linkedin.com/in/stoufferegan,e-learning,+16504009272,Rally Reader,Seed,Palo Alto,"Rally Reader is an AI-powered e-reading platform for K-12 that distributes, supports, and tracks independent reading.","Rally Reader is an AI-powered e-reading platform for K-12 that distributes, supports, and tracks independent reading. The company helps kids build reading fluency with the first smart, AI Reading Coach. 
+
+It was founded in 2020 and is located in Palo Alto, California.",Artificial Intelligence (AI),E-Learning,Education,2024-03-29,233221,"You are an expert comedy writer trained in Bill Burr’s analogy-driven humor, skilled in crafting jokes using structured comedic techniques like expectation subversion, incongruity, and psychological laughter triggers.
+
+Your task: Generate a single, high-quality joke that is personalized based on the provided user data. The joke should follow this hidden structure but NOT explicitly label the sections:
+
+➡ Premise → Set-up → Punchline
+
+Guidelines for the Joke
+
+Use Analogy: Compare the user’s industry, company, or role to an unexpected concept.
+Subvert Expectations: Let the audience assume where the joke is going, then twist it.
+Match Tone to User Data: If they seem formal, keep it sharp and witty. If they seem casual, lean into humor.
+Be Punchy: Keep it concise—one smooth-flowing joke.
+
+Input Data (Example)
+First Name: Alex
+Job Title: Head of AI Research
+Headline: Building the future of generative models
+Company Name: NeuralForge
+Industry: AI / Machine Learning
+City: San Francisco
+Company Description: An AI startup developing next-gen multimodal LLMs.
+Output Example (Joke, No Labels)
+AI researchers are basically like magicians—except instead of pulling rabbits out of hats, they pull compute bills out of thin air. Alex’s team at NeuralForge is out here training models so big, even OpenAI is side-eyeing their GPU usage. At this point, their LLM isn’t just multimodal—it’s multi-mortgage.
+
+Now, generate a joke based on the following user data:
+
+First Name: Stouffer
+Job Title: Co-Founder
+Headline: CRO/CCO/Co-Founder
+Company Name: Rally Reader
+Industry: e-learning / Artificial Intelligence (AI) / E-Learning / Education
+City: Palo Alto
+Company Short Description: Rally Reader is an AI-powered e-reading platform for K-12 that distributes, supports, and tracks independent reading.
+Full Description: Rally Reader is an AI-powered e-reading platform for K-12 that distributes, supports, and tracks independent reading. The company helps kids build reading fluency with the first smart, AI Reading Coach. 
+
+It was founded in 2020 and is located in Palo Alto, California.
+
+This ensures:
+✅ No labels – Just the joke
+✅ Dynamic tone matching based on user data
+✅ Structured but natural flow
+✅ One-shot, top-tier humor
+
+Output below:
+
+“",
+cognitivecare.com,linkedin.com/company/cognitivecare,twitter.com/cognitivecare_,Avs,Co-Founder and Chief Physician Scientist,Medical & Hemato Oncologist-inventor -Investor,,http://www.linkedin.com/in/avs-suresh-a3734a4,hospital & health care,+14087759915,CognitiveCare,Seed,Milpitas,"CognitiveCare, a leading company in reducing maternal and Infant mortality, is now DBA Quantiva Health. Read more about this transition","CognitiveCare is a trailblazing force in improving healthcare outcomes. We utilize scientific rigor to unveil and address health disparities, enhance disease prevention and management, accelerate health economics outcomes research, and catalyze optimal efficacy in pharma and life sciences. With a foundation rooted in patented and proprietary risk quantification and resource allocation algorithms, we serve payers, providers, policymakers, public health departments, pharma, and life sciences clients, driving impact for both individual and population health. CongitiveCare is poised to revolutionize the healthcare landscape through its algorithm hub, interdisciplinary approach, and real-world evidence expertise. The company's impactful strides in maternal and infant health, children's health, mental health, substance use disorder, eye health, infectious diseases, and pathology lay the foundation for accelerating our mission to build healthier communities.",Artificial Intelligence (AI),Health Care,Machine Learning,2020-12-01,109226,"You are an expert comedy writer trained in Bill Burr’s analogy-driven humor, skilled in crafting jokes using structured comedic techniques like expectation subversion, incongruity, and psychological laughter triggers.
+
+Your task: Generate a single, high-quality joke that is personalized based on the provided user data. The joke should follow this hidden structure but NOT explicitly label the sections:
+
+➡ Premise → Set-up → Punchline
+
+Guidelines for the Joke
+
+Use Analogy: Compare the user’s industry, company, or role to an unexpected concept.
+Subvert Expectations: Let the audience assume where the joke is going, then twist it.
+Match Tone to User Data: If they seem formal, keep it sharp and witty. If they seem casual, lean into humor.
+Be Punchy: Keep it concise—one smooth-flowing joke.
+
+Input Data (Example)
+First Name: Alex
+Job Title: Head of AI Research
+Headline: Building the future of generative models
+Company Name: NeuralForge
+Industry: AI / Machine Learning
+City: San Francisco
+Company Description: An AI startup developing next-gen multimodal LLMs.
+Output Example (Joke, No Labels)
+AI researchers are basically like magicians—except instead of pulling rabbits out of hats, they pull compute bills out of thin air. Alex’s team at NeuralForge is out here training models so big, even OpenAI is side-eyeing their GPU usage. At this point, their LLM isn’t just multimodal—it’s multi-mortgage.
+
+Now, generate a joke based on the following user data:
+
+First Name: Avs
+Job Title: Co-Founder and Chief Physician Scientist
+Headline: Medical & Hemato Oncologist-inventor -Investor
+Company Name: CognitiveCare
+Industry: hospital & health care / Artificial Intelligence (AI) / Health Care / Machine Learning
+City: Milpitas
+Company Short Description: CognitiveCare, a leading company in reducing maternal and Infant mortality, is now DBA Quantiva Health. Read more about this transition
+Full Description: CognitiveCare is a trailblazing force in improving healthcare outcomes. We utilize scientific rigor to unveil and address health disparities, enhance disease prevention and management, accelerate health economics outcomes research, and catalyze optimal efficacy in pharma and life sciences. With a foundation rooted in patented and proprietary risk quantification and resource allocation algorithms, we serve payers, providers, policymakers, public health departments, pharma, and life sciences clients, driving impact for both individual and population health. CongitiveCare is poised to revolutionize the healthcare landscape through its algorithm hub, interdisciplinary approach, and real-world evidence expertise. The company's impactful strides in maternal and infant health, children's health, mental health, substance use disorder, eye health, infectious diseases, and pathology lay the foundation for accelerating our mission to build healthier communities.
+
+This ensures:
+✅ No labels – Just the joke
+✅ Dynamic tone matching based on user data
+✅ Structured but natural flow
+✅ One-shot, top-tier humor
+
+Output below:
+
+“",

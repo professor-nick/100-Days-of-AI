@@ -17,16 +17,14 @@ class TokenUsage:
     prompt_tokens: int
     completion_tokens: int
     total_tokens: int
-    reasoning_tokens: Optional[int] = None
+    model: str
+    timestamp: datetime = datetime.now()
 
 @dataclass
 class APIResponse:
     content: str
     token_usage: TokenUsage
-    cost: float
-    thinking_time: float = 0.0
-    provider: str = "openai"
-    model: str = "unknown"
+    success: bool = True
 
 class TokenTracker:
     def __init__(self, session_id: Optional[str] = None, logs_dir: Optional[Path] = None):
